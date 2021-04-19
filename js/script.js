@@ -13,18 +13,18 @@ function init() {
         },
 
         mounted() {
-            // axios.get('https://api.themoviedb.org/3/search/movie', {
+            axios.get('https://api.themoviedb.org/3/search/movie', {
 
-            //         params: {
-            //             'api_key': '8c6e58cb6f1459e345a3ff802e48cdba',
-            //             'query': 'ritorno al futuro'
-            //         }
-            //     })
+                    params: {
+                        'api_key': '8c6e58cb6f1459e345a3ff802e48cdba',
+                        'query': 'ritorno al futuro'
+                    }
+                })
 
-            axios.get('https://api.themoviedb.org/3/search/movie?api_key=8c6e58cb6f1459e345a3ff802e48cdba&query=ritorno+al+futuro')
+
                 .then(data => {
 
-                    let elem = data.data.response;
+                    let elem = data.data;
 
                     this.films = elem;
 
@@ -33,6 +33,7 @@ function init() {
                     console.log('ciao');
 
                 })
+
                 .catch(() => console.log('error'));
         }
     });
