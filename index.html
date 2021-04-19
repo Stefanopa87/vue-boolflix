@@ -30,8 +30,19 @@
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <ul>
                         <li v-for="film in films"> 
-                            <h3>TITOLO: {{film.title}}</h3>
-                            <h5>TITOLO ORIGINALE: {{film.original_title}}</h5>
+                            <h3>
+                                TITOLO:
+                                <span v-if="film.title != null"> {{film.title}}</span>
+                                <span v-else> {{film.name}}</span>
+
+
+
+                            </h3>
+                            <h5>TITOLO ORIGINALE: 
+
+                                <span v-if="film.original_title != null">{{film.original_title}}</span>
+                                <span v-else>{{film.original_name}}</span>
+                            </h5>
 
                             <p v-if= "film.original_language == 'it' ">
                                LINGUA: <img src="img/italia.png" alt="ITALIA">
