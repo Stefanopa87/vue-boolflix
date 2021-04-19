@@ -26,6 +26,8 @@
         <div class="row h-100">
             <div class="col-12 d-flex">
                 <div class="m-auto">
+                    <input v-model="searchFilms" @keyUp.enter="search" type="text" class="form-control" placeholder="Type a film's title"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <ul>
                         <li v-for="film in films"> {{film.title}}  </li>
                     </ul>
