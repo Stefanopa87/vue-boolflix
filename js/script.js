@@ -24,9 +24,9 @@ function init() {
 
                 .then(data => {
 
-                    let elem = data.data;
+                    let results = data.data.results;
 
-                    this.films = elem;
+                    this.films = results;
 
                     console.log(this.films)
 
