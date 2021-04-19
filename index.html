@@ -29,7 +29,23 @@
                     <input v-model="searchFilms" @keyUp.enter="search" type="text" class="form-control" placeholder="Type a film's title"
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <ul>
-                        <li v-for="film in films"> {{film.title}}  </li>
+                        <li v-for="film in films"> 
+                            <h3>TITOLO: {{film.title}}</h3>
+                            <h5>TITOLO ORIGINALE: {{film.original_title}}</h5>
+
+                            <p v-if= "film.original_language == 'it' ">
+                               LINGUA: <img src="img/italia.png" alt="ITALIA">
+                            </p>
+                            <p v-else-if= "film.original_language == 'en' ">
+                               LINGUA: <img src="img/inghilterra.png" alt="INGHILTERRA">
+                            </p>
+                            <p v-else>LINGUA: {{film.original_language}}</p>
+
+                            <p>VOTO: {{films.vote_average}}</p>
+                        
+                        
+                        
+                        </li><br>
                     </ul>
                     <br>
                 </div>

@@ -8,3 +8,11 @@ body {
     background-color: rgb(60, 104, 199);
     color: white;
 }
+
+h3{
+    color:red;
+}
+
+p img{
+    width: 40px;
+}
