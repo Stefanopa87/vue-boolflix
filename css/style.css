@@ -5,25 +5,65 @@
 }
 
 body {
-    background-color: rgb(60, 104, 199);
+    background-color: #303030;
     color: white;
 }
 
-h3{
+header{
+    background-color: black;
+    height: 70px;
+    width: 100%;
+}
+
+.search_area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    height: 70px;
+}
+
+.input-group{
+    width: 40%;
+}
+
+.input-group-text {
+    height: 38px;
+    cursor: pointer;
+}
+
+.contents_ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+}
+
+.box {
+    width: 250px;
+    height: auto;
+    margin: 25px 25px;
+}
+
+.poster {
+    width: 170px;
+    max-height: 250px;
+}
+
+.poster_alterativ {
+    width: 170px;
+    height: 250px;
+}
+
+h5{
     color:red;
 }
 
 p img{
     width: 40px;
-}
-
-.film{
-    border: solid 1px white;
-}
-
-.serie{
-
-    border: solid 1px black;
 }
 
 .yellow{

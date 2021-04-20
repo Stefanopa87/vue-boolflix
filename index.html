@@ -22,108 +22,123 @@
 </head>
 
 <body>
-    <div id="app" class="container vh-100">
-        <div class="row h-100">
-            <input v-model="searchElements" @keyUp.enter="search" type="text" class="form-control"
-                placeholder="Type a film's title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div id="app">
+        <header>
+            <div class="container search_area">
+                <div>
+                    <img src="img/netflix.png" alt="" class="logo">
+                </div>
 
-
-            <div class="col-6 d-flex">
-                <!-- <div class="m-auto"> -->
-                <div class="">
-                    <ul>
-                        <li>LISTA FILMS: </li>
-                        <li v-for="film in films" class="film">
-                            <h3>TITOLO: {{film.title}}</h3>
-
-                            <h5>TITOLO ORIGINALE:{{film.original_title}}</h5>
-
-                            <p v-if="film.original_language == 'it' ">
-                                LINGUA: <img src="img/italia.png" alt="ITALIA">
-                            </p>
-                            <p v-else-if="film.original_language == 'en' ">
-                                LINGUA: <img src="img/inghilterra.png" alt="INGHILTERRA">
-                            </p>
-                            <p v-else>LINGUA: {{film.original_language}}</p>
-
-                            <p>VOTO: {{film.vote_average}}
-                                <span v-if="film.vote_average >= 0 && film.vote_average <= 2">
-                                    <span class="yellow"><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                                </span>
-                                <span v-if="film.vote_average >= 2.1 && film.vote_average <= 4">
-                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                                </span>
-                                <span v-if="film.vote_average >= 4.1 && film.vote_average <= 6">
-                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                                </span>
-                                <span v-if="film.vote_average >= 6.1 && film.vote_average <= 8">
-                                    <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
-                                    <span><i class="far fa-star"></i></span>
-                                </span>
-                                <span v-if="film.vote_average >= 8.1 && film.vote_average <= 10">
-                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span></span>
-                                </span>
-                            </p>
-                            <img :src="'https://image.tmdb.org/t/p/w342'+ film.poster_path" alt="">
-                        </li><br>
-                    </ul>
+                <div class="input-group mb-1">
+                    <span @click="search" class="input-group-text" id="basic-addon1"><i
+                            class="fas fa-search"></i></span>
+                    <input v-model="searchElements" @keyUp.enter="search" type="text" class="form-control"
+                        placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </div>
-            
-            
-            <div class="col-6 d-flex">
-                <!-- <div class="m-auto"> -->
-                <div class="">
-                    <ul>
-                        <li>LISTA SERIES: </li>
-                        <li v-for="serie in series" class="serie">
-                            <h3>TITOLO: {{serie.name}}</h3>
+        </header>
+        <main>
 
-                            <h5>TITOLO ORIGINALE: {{serie.original_name}}</h5>
-        
-                            <p v-if="serie.original_language == 'it' ">
-                                LINGUA: <img src="img/italia.png" alt="ITALIA">
-                            </p>
-                            <p v-else-if="serie.original_language == 'en' ">
-                                LINGUA: <img src="img/inghilterra.png" alt="INGHILTERRA">
-                            </p>
-                            <p v-else>LINGUA: {{serie.original_language}}</p>
-        
-                            <p>VOTO: {{serie.vote_average}}
-                                <span v-if="serie.vote_average >= 0 && serie.vote_average < 2">
-                                    <span class="yellow"><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                                </span>
-                                <span v-if="serie.vote_average >= 2.1 && serie.vote_average <= 4">
-                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                                </span>
-                                <span v-if="serie.vote_average >= 4.1 && serie.vote_average <= 6">
-                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                                </span>
-                                <span v-if="serie.vote_average >= 6.1 && serie.vote_average <= 8">
-                                    <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
-                                    <span><i class="far fa-star"></i></span>
-                                </span>
-                                <span v-if="serie.vote_average >= 8.1 && serie.vote_average <= 10">
-                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                                    <span></span>
-                                </span>
-                            </p>
+            <!-- FILM -->
+            <div class="contents_">
+                <div v-for="film in films" class="box">
+                    <h5>TITOLO: {{film.title}}</h5>
 
-                            <img :src="'http://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
-                        </li><br>
-                    </ul>             
+                    <h6>TITOLO ORIGINALE:{{film.original_title}}</h6>
+
+                    <p v-if="film.original_language == 'it' ">
+                        LINGUA: <img src="img/italia.png" alt="ITALIA">
+                    </p>
+                    <p v-else-if="film.original_language == 'en' ">
+                        LINGUA: <img src="img/inghilterra.png" alt="INGHILTERRA">
+                    </p>
+                    <p v-else>LINGUA: {{film.original_language}}</p>
+
+                    <p>VOTO: {{film.vote_average}}
+                        <span v-if="film.vote_average >= 0 && film.vote_average <= 2">
+                            <span class="yellow"><i class="fas fa-star"></i></span>
+                            <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i
+                                    class="far fa-star"></i></span>
+                        </span>
+                        <span v-if="film.vote_average >= 2.1 && film.vote_average <= 4">
+                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span><i class="far fa-star"></i><i class="far fa-star"></i><i
+                                    class="far fa-star"></i></span>
+                        </span>
+                        <span v-if="film.vote_average >= 4.1 && film.vote_average <= 6">
+                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i></span>
+                            <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                        </span>
+                        <span v-if="film.vote_average >= 6.1 && film.vote_average <= 8">
+                            <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
+                            <span><i class="far fa-star"></i></span>
+                        </span>
+                        <span v-if="film.vote_average >= 8.1 && film.vote_average <= 10">
+                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i></span>
+                            <span></span>
+                        </span>
+                    </p>
+                    <img v-if="film.poster_path" class="poster"
+                        :src="'https://image.tmdb.org/t/p/w342'+ film.poster_path" alt="">
+                    <img v-else="" class="poster_alterativ" src="img/logo.png" alt="">
                 </div>
             </div>
 
+            <!-- SERIE -->
+            <div class="contents_">
+                <div v-for="serie in series" class="box">
 
-        </div>
+                    <h5>TITOLO: {{serie.name}}</h5>
+
+                    <h6>TITOLO ORIGINALE: {{serie.original_name}}</h6>
+
+                    <p v-if="serie.original_language == 'it' ">
+                        LINGUA: <img src="img/italia.png" alt="ITALIA">
+                    </p>
+                    <p v-else-if="serie.original_language == 'en' ">
+                        LINGUA: <img src="img/inghilterra.png" alt="INGHILTERRA">
+                    </p>
+                    <p v-else>LINGUA: {{serie.original_language}}</p>
+
+                    <p>VOTO: {{serie.vote_average}}
+                        <span v-if="serie.vote_average >= 0 && serie.vote_average < 2">
+                            <span class="yellow"><i class="fas fa-star"></i></span>
+                            <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i
+                                    class="far fa-star"></i></span>
+                        </span>
+                        <span v-if="serie.vote_average >= 2.1 && serie.vote_average <= 4">
+                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span><i class="far fa-star"></i><i class="far fa-star"></i><i
+                                    class="far fa-star"></i></span>
+                        </span>
+                        <span v-if="serie.vote_average >= 4.1 && serie.vote_average <= 6">
+                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i></span>
+                            <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                        </span>
+                        <span v-if="serie.vote_average >= 6.1 && serie.vote_average <= 8">
+                            <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
+                            <span><i class="far fa-star"></i></span>
+                        </span>
+                        <span v-if="serie.vote_average >= 8.1 && serie.vote_average <= 10">
+                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i></span>
+                            <span></span>
+                        </span>
+                    </p>
+
+                    <img v-if="serie.poster_path" class="poster"
+                        :src="'http://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
+                    <img v-else="" class="poster_alterativ" src="img/logo.png" alt="">
+                </div>
+            </div>
+        </main>
     </div>
 </body>
 
