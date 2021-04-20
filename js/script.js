@@ -17,6 +17,7 @@ function init() {
             search: function () {
 
                 this.films = [];
+                this.series= [];
 
                 const params = {
 
