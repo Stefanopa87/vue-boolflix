@@ -7,7 +7,9 @@ function init() {
 
             films: [],
 
-            searchFilms: ""
+            series:[],
+
+            searchElements: ""
         },
 
         methods: {
@@ -16,55 +18,29 @@ function init() {
 
                 this.films = [];
 
+                const params = {
 
-                if (this.searchFilms.length > 0) {
+                    params: {
+                        'api_key': '8c6e58cb6f1459e345a3ff802e48cdba',
+                        'query': this.searchElements,
+                        'language': 'it',
+                    }
+                }
 
-                    console.log(this.searchFilms);
+
+                if (this.searchElements.length > 0) {
+
+                    console.log(this.searchElements);
                     // FILMS
-                    axios.get('https://api.themoviedb.org/3/search/movie', {
-
-                        params: {
-                            'api_key': '8c6e58cb6f1459e345a3ff802e48cdba',
-                            'query': this.searchFilms,
-                            'language': 'it',
-                        }
-                    })
-
-                    .then(data => {
-
-                        let results = data.data.results;
-
-                      for (let i = 0; i < results.length; i++) {
-
-                          this.films.push(results[i]);
-
-                      }
-
-                        console.log(this.films)
-                    })
-
-                    .catch(() => console.log('error'));
-
-                    // TV SERIES
-                    axios.get('https://api.themoviedb.org/3/search/tv', {
-
-                            params: {
-                                'api_key': '8c6e58cb6f1459e345a3ff802e48cdba',
-                                'query': this.searchFilms,
-                                'language': 'it',
-                            }
-                        })
+                    axios.get('https://api.themoviedb.org/3/search/movie', params)
 
                         .then(data => {
 
                             let results = data.data.results;
 
-                            // this.films.push(results);
-
                             for (let i = 0; i < results.length; i++) {
-                               
+
                                 this.films.push(results[i]);
-                                
                             }
 
                             console.log(this.films)
@@ -72,38 +48,31 @@ function init() {
 
                         .catch(() => console.log('error'));
 
+                    // TV SERIES
+                    axios.get('https://api.themoviedb.org/3/search/tv', params)
+
+                        .then(data => {
+
+                            let results = data.data.results;
+
+                            for (let i = 0; i < results.length; i++) {
+
+                                this.series.push(results[i]);
+                            }
+
+                            console.log(this.series)
+                        })
+
+                        .catch(() => console.log('error'));
+
                 }
 
-                this.searchFilms = ""
+                this.searchElements = ""
             }
 
         },
 
-        // mounted() {
-            // axios.get('https://api.themoviedb.org/3/search/movie', {
 
-            //         params: {
-            //             'api_key': '8c6e58cb6f1459e345a3ff802e48cdba',
-            //             'query': this.searchFilms,
-            //             'language': 'it',
-            //         }
-            //     })
-
-
-            //     .then(data => {
-
-            //         let results = data.data.results;
-
-            //         this.films = results;
-
-            //         console.log(this.films)
-
-            //         console.log('ciao');
-
-            //     })
-
-            //     .catch(() => console.log('error'));
-        // }
     });
 }
 

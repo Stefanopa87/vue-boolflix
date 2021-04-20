@@ -24,43 +24,60 @@
 <body>
     <div id="app" class="container vh-100">
         <div class="row h-100">
-            <div class="col-12 d-flex">
-                <div class="m-auto">
-                    <input v-model="searchFilms" @keyUp.enter="search" type="text" class="form-control" placeholder="Type a film's title"
-                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input v-model="searchElements" @keyUp.enter="search" type="text" class="form-control"
+                placeholder="Type a film's title" aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+
+            <div class="col-6 d-flex">
+                <!-- <div class="m-auto"> -->
+                <div class="">
                     <ul>
-                        <li v-for="film in films"> 
-                            <h3>
-                                TITOLO:
-                                <span v-if="film.title != null"> {{film.title}}</span>
-                                <span v-else> {{film.name}}</span>
+                        <li>LISTA FILMS: </li>
+                        <li v-for="film in films" class="film">
+                            <h3>TITOLO: {{film.title}}</h3>
 
+                            <h5>TITOLO ORIGINALE:{{film.original_title}}</h5>
 
-
-                            </h3>
-                            <h5>TITOLO ORIGINALE: 
-
-                                <span v-if="film.original_title != null">{{film.original_title}}</span>
-                                <span v-else>{{film.original_name}}</span>
-                            </h5>
-
-                            <p v-if= "film.original_language == 'it' ">
-                               LINGUA: <img src="img/italia.png" alt="ITALIA">
+                            <p v-if="film.original_language == 'it' ">
+                                LINGUA: <img src="img/italia.png" alt="ITALIA">
                             </p>
-                            <p v-else-if= "film.original_language == 'en' ">
-                               LINGUA: <img src="img/inghilterra.png" alt="INGHILTERRA">
+                            <p v-else-if="film.original_language == 'en' ">
+                                LINGUA: <img src="img/inghilterra.png" alt="INGHILTERRA">
                             </p>
                             <p v-else>LINGUA: {{film.original_language}}</p>
 
-                            <p>VOTO: {{films.vote_average}}</p>
-                        
-                        
-                        
+                            <p>VOTO: {{film.vote_average}}</p>
                         </li><br>
                     </ul>
-                    <br>
                 </div>
             </div>
+            
+            
+            <div class="col-6 d-flex">
+                <!-- <div class="m-auto"> -->
+                <div class="">
+                    <ul>
+                        <li>LISTA SERIES: </li>
+                        <li v-for="serie in series" class="serie">
+                            <h3>TITOLO: {{serie.name}}</h3>
+
+                            <h5>TITOLO ORIGINALE: {{serie.original_name}}</h5>
+        
+                            <p v-if="serie.original_language == 'it' ">
+                                LINGUA: <img src="img/italia.png" alt="ITALIA">
+                            </p>
+                            <p v-else-if="serie.original_language == 'en' ">
+                                LINGUA: <img src="img/inghilterra.png" alt="INGHILTERRA">
+                            </p>
+                            <p v-else>LINGUA: {{serie.original_language}}</p>
+        
+                            <p>VOTO: {{serie.vote_average}}</p>   
+                        </li><br>
+                    </ul>             
+                </div>
+            </div>
+
+
         </div>
     </div>
 </body>

@@ -16,3 +16,12 @@ h3{
 p img{
     width: 40px;
 }
+
+.film{
+    border: solid 1px white;
+}
+
+.serie{
+
+    border: solid 1px black;
+}
