@@ -46,8 +46,28 @@
                             </p>
                             <p v-else>LINGUA: {{film.original_language}}</p>
 
-                            <p>VOTO: {{film.vote_average}}</p>
-
+                            <p>VOTO: {{film.vote_average}}
+                                <span v-if="film.vote_average >= 0 && film.vote_average <= 2">
+                                    <span class="yellow"><i class="fas fa-star"></i></span>
+                                    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                                </span>
+                                <span v-if="film.vote_average >= 2.1 && film.vote_average <= 4">
+                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                                </span>
+                                <span v-if="film.vote_average >= 4.1 && film.vote_average <= 6">
+                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                                </span>
+                                <span v-if="film.vote_average >= 6.1 && film.vote_average <= 8">
+                                    <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
+                                    <span><i class="far fa-star"></i></span>
+                                </span>
+                                <span v-if="film.vote_average >= 8.1 && film.vote_average <= 10">
+                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span></span>
+                                </span>
+                            </p>
                             <img :src="'https://image.tmdb.org/t/p/w342'+ film.poster_path" alt="">
                         </li><br>
                     </ul>
@@ -73,7 +93,28 @@
                             </p>
                             <p v-else>LINGUA: {{serie.original_language}}</p>
         
-                            <p>VOTO: {{serie.vote_average}}</p>
+                            <p>VOTO: {{serie.vote_average}}
+                                <span v-if="serie.vote_average >= 0 && serie.vote_average < 2">
+                                    <span class="yellow"><i class="fas fa-star"></i></span>
+                                    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                                </span>
+                                <span v-if="serie.vote_average >= 2.1 && serie.vote_average <= 4">
+                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                                </span>
+                                <span v-if="serie.vote_average >= 4.1 && serie.vote_average <= 6">
+                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
+                                </span>
+                                <span v-if="serie.vote_average >= 6.1 && serie.vote_average <= 8">
+                                    <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
+                                    <span><i class="far fa-star"></i></span>
+                                </span>
+                                <span v-if="serie.vote_average >= 8.1 && serie.vote_average <= 10">
+                                    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                                    <span></span>
+                                </span>
+                            </p>
 
                             <img :src="'http://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
                         </li><br>
