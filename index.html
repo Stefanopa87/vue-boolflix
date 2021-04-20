@@ -55,7 +55,12 @@
                     <p v-else>LINGUA: {{film.original_language}}</p>
 
                     <p>VOTO: {{film.vote_average}}
-                        <span v-if="film.vote_average >= 0 && film.vote_average <= 2">
+
+                        <span v-for="number in 5">
+                            <span v-if=" Math.ceil(film.vote_average / 2) >= number" class="yellow"><i class="fas fa-star"></i></span>
+                            <span v-else=""><i class="far fa-star"></i></span>
+                        </span>
+                        <!-- <span v-if="film.vote_average >= 0 && film.vote_average <= 2">
                             <span class="yellow"><i class="fas fa-star"></i></span>
                             <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i
                                     class="far fa-star"></i></span>
@@ -80,7 +85,7 @@
                                     class="fas fa-star"></i><i class="fas fa-star"></i><i
                                     class="fas fa-star"></i></span>
                             <span></span>
-                        </span>
+                        </span> -->
                     </p>
                     <img v-if="film.poster_path" class="poster"
                         :src="'https://image.tmdb.org/t/p/w342'+ film.poster_path" alt="">
@@ -105,7 +110,13 @@
                     <p v-else>LINGUA: {{serie.original_language}}</p>
 
                     <p>VOTO: {{serie.vote_average}}
-                        <span v-if="serie.vote_average >= 0 && serie.vote_average < 2">
+
+                        <span v-for="number in 5">
+                            <span v-if="Math.ceil(serie.vote_average / 2) >= number" class="yellow"><i class="fas fa-star"></i></span>
+                            <span v-else=""><i class="far fa-star"></i></span>
+                        </span>
+
+                        <!-- <span v-if="serie.vote_average >= 0 && serie.vote_average < 2">
                             <span class="yellow"><i class="fas fa-star"></i></span>
                             <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i
                                     class="far fa-star"></i></span>
@@ -130,7 +141,7 @@
                                     class="fas fa-star"></i><i class="fas fa-star"></i><i
                                     class="fas fa-star"></i></span>
                             <span></span>
-                        </span>
+                        </span> -->
                     </p>
 
                     <img v-if="serie.poster_path" class="poster"

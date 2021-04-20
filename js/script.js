@@ -9,15 +9,12 @@ function init() {
 
             series:[],
 
-            searchElements: ""
+            searchElements: "cane"
         },
 
         methods: {
 
             search: function () {
-
-                this.films = [];
-                this.series= [];
 
                 const params = {
 
@@ -39,10 +36,7 @@ function init() {
 
                             let results = data.data.results;
 
-                            for (let i = 0; i < results.length; i++) {
-
-                                this.films.push(results[i]);
-                            }
+                            this.films = results
 
                             console.log(this.films)
                         })
@@ -56,10 +50,7 @@ function init() {
 
                             let results = data.data.results;
 
-                            for (let i = 0; i < results.length; i++) {
-
-                                this.series.push(results[i]);
-                            }
+                            this.series = results
 
                             console.log(this.series)
                         })
@@ -70,10 +61,7 @@ function init() {
 
                 this.searchElements = ""
             }
-
         },
-
-
     });
 }
 
