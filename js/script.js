@@ -9,7 +9,11 @@ function init() {
 
             series:[],
 
-            searchElements: ""
+            searchElements: "",
+
+            showInfo: false,
+
+            showId: ""
         },
 
         methods: {
@@ -62,9 +66,13 @@ function init() {
                 this.searchElements = ""
             },
             
-            overview: function(i){
+            overview: function(id){
                 
-            }
+                this.showInfo = true;
+
+                this.showId = id;
+
+            },
         },
     });
 }
