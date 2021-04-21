@@ -43,7 +43,7 @@
             <div class="contents_">
                 <div v-for="(film, i) in films" class="box_">
 
-                    <div v-if="showInfo == true && showId == film.id">
+                    <div v-if="showInfo == true && showId == film.id" @mouseleave="leave()">
                         <h5>{{film.title}}</h5>
 
                         <h6>titolo originale:</h6>
@@ -71,7 +71,7 @@
                         <p v-else style="font-size: x-small;">no info</p>
                     </div>
 
-                    <div v-else @mouseover="overview(film.id)" @mouseleave="leave()">
+                    <div v-else @mouseover="hover(film.id)">
                         <img v-if="film.poster_path" class="poster"
                             :src="'https://image.tmdb.org/t/p/w342'+ film.poster_path" alt="">
                         <img v-else class="poster_alterativ" src="img/logo.png" alt="">
@@ -84,7 +84,7 @@
             <div class="contents_">
                 <div v-for="(serie, i) in series" class="box_">
 
-                    <div v-if="showInfo == true && showId == serie.id">
+                    <div v-if="showInfo == true && showId == serie.id"  @mouseleave="leave()">
 
                         <h5>{{serie.name}}</h5>
 
@@ -113,8 +113,8 @@
                         <p v-else style="font-size: x-small;">no info</p>
                     </div>
 
-                    <div v-else @mouseover="overview(serie.id)" @mouseleave="leave()">
-                        <img v-if="serie.poster_path" @mouseover="overview (i)" class="poster"
+                    <div v-else @mouseover="hover(serie.id)"  >
+                        <img v-if="serie.poster_path" class="poster"
                             :src="'http://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
                         <img v-else class="poster_alterativ" src="img/logo.png" alt="">
                     </div>

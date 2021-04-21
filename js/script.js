@@ -66,13 +66,19 @@ function init() {
                 this.searchElements = ""
             },
             
-            overview: function(id){
+            hover: function(id){
                 
                 this.showInfo = true;
 
                 this.showId = id;
 
             },
+
+            leave: function(){
+
+                this.showInfo = false;
+
+            }
         },
     });
 }
