@@ -9,20 +9,20 @@ body {
     color: white;
 }
 
-header{
+.navbar_color{
     background-color: black;
-    height: 70px;
-    width: 100%;
 }
 
 .search_area{
+    background-color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 
 .logo{
-    height: 70px;
+    height: 50px;
 }
 
 .input-group{
@@ -38,19 +38,25 @@ header{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     margin: auto;
 }
 
-.box {
-    width: 250px;
+.box_ {
+    width: 170px;
     height: auto;
     margin: 25px 25px;
+    text-align: center;
 }
 
 .poster {
     width: 170px;
     max-height: 250px;
+}
+
+.poster:hover{
+    scale: 1rem;
+
 }
 
 .poster_alterativ {
@@ -60,6 +66,9 @@ header{
 
 h5{
     color:red;
+}
+h6{
+    font-size: revert;
 }
 
 p img{

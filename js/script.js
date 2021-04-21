@@ -9,7 +9,7 @@ function init() {
 
             series:[],
 
-            searchElements: "cane"
+            searchElements: ""
         },
 
         methods: {
@@ -60,6 +60,10 @@ function init() {
                 }
 
                 this.searchElements = ""
+            },
+            
+            overview: function(i){
+                
             }
         },
     });

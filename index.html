@@ -23,28 +23,32 @@
 
 <body>
     <div id="app">
-        <header>
-            <div class="container search_area">
-                <div>
-                    <img src="img/netflix.png" alt="" class="logo">
-                </div>
 
-                <div class="input-group mb-1">
-                    <span @click="search" class="input-group-text" id="basic-addon1"><i
-                            class="fas fa-search"></i></span>
-                    <input v-model="searchElements" @keyUp.enter="search" type="text" class="form-control"
-                        placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+        <header>
+            <nav class="navbar justify-content-between navbar_color">
+                <a class="navbar-brand ml-3"><img src="img/netflix1.png" alt="" class="logo"></a>
+                <div class="form-inline mr-3">
+                    <input v-model="searchElements" @keyUp.enter="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button @click="search" class="btn btn-dark my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </div>
-            </div>
+            </nav>
         </header>
+
+
         <main>
 
             <!-- FILM -->
             <div class="contents_">
-                <div v-for="film in films" class="box">
-                    <h5>TITOLO: {{film.title}}</h5>
+                <div v-for="(film, i) in films" class="box_">
+                    <h5>{{film.title}}</h5>
 
-                    <h6>TITOLO ORIGINALE:{{film.original_title}}</h6>
+                    <h6>titolo originale:</h6>
+                    <h6>{{film.original_title}}</h6>
+
+                    <img v-if="film.poster_path" class="poster" :src="'https://image.tmdb.org/t/p/w342'+ film.poster_path" alt="">
+                    <img v-else="" class="poster_alterativ" src="img/logo.png" alt="">
+
+                    <br>
 
                     <p v-if="film.original_language == 'it' ">
                         LINGUA: <img src="img/italia.png" alt="ITALIA">
@@ -54,52 +58,30 @@
                     </p>
                     <p v-else>LINGUA: {{film.original_language}}</p>
 
-                    <p>VOTO: {{film.vote_average}}
+                    <p>VOTO:
 
                         <span v-for="number in 5">
                             <span v-if=" Math.ceil(film.vote_average / 2) >= number" class="yellow"><i class="fas fa-star"></i></span>
                             <span v-else=""><i class="far fa-star"></i></span>
                         </span>
-                        <!-- <span v-if="film.vote_average >= 0 && film.vote_average <= 2">
-                            <span class="yellow"><i class="fas fa-star"></i></span>
-                            <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i
-                                    class="far fa-star"></i></span>
-                        </span>
-                        <span v-if="film.vote_average >= 2.1 && film.vote_average <= 4">
-                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                            <span><i class="far fa-star"></i><i class="far fa-star"></i><i
-                                    class="far fa-star"></i></span>
-                        </span>
-                        <span v-if="film.vote_average >= 4.1 && film.vote_average <= 6">
-                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i></span>
-                            <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                        </span>
-                        <span v-if="film.vote_average >= 6.1 && film.vote_average <= 8">
-                            <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
-                            <span><i class="far fa-star"></i></span>
-                        </span>
-                        <span v-if="film.vote_average >= 8.1 && film.vote_average <= 10">
-                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i></span>
-                            <span></span>
-                        </span> -->
                     </p>
-                    <img v-if="film.poster_path" class="poster"
-                        :src="'https://image.tmdb.org/t/p/w342'+ film.poster_path" alt="">
-                    <img v-else="" class="poster_alterativ" src="img/logo.png" alt="">
+                   
                 </div>
             </div>
 
             <!-- SERIE -->
             <div class="contents_">
-                <div v-for="serie in series" class="box">
+                <div v-for="(serie, i) in series" class="box_">
 
-                    <h5>TITOLO: {{serie.name}}</h5>
+                    <h5>{{serie.name}}</h5>
 
-                    <h6>TITOLO ORIGINALE: {{serie.original_name}}</h6>
+                    <h6>titolo originale:</h6>
+                    <h6>{{serie.original_name}}</h6>
+
+                    <img v-if="serie.poster_path" @mousehover="overview (i)"  class="poster" :src="'http://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
+                    <img v-else="" class="poster_alterativ" src="img/logo.png" alt="">
+
+                    <br>
 
                     <p v-if="serie.original_language == 'it' ">
                         LINGUA: <img src="img/italia.png" alt="ITALIA">
@@ -109,44 +91,13 @@
                     </p>
                     <p v-else>LINGUA: {{serie.original_language}}</p>
 
-                    <p>VOTO: {{serie.vote_average}}
+                    <p>VOTO:
 
                         <span v-for="number in 5">
                             <span v-if="Math.ceil(serie.vote_average / 2) >= number" class="yellow"><i class="fas fa-star"></i></span>
                             <span v-else=""><i class="far fa-star"></i></span>
                         </span>
-
-                        <!-- <span v-if="serie.vote_average >= 0 && serie.vote_average < 2">
-                            <span class="yellow"><i class="fas fa-star"></i></span>
-                            <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i
-                                    class="far fa-star"></i></span>
-                        </span>
-                        <span v-if="serie.vote_average >= 2.1 && serie.vote_average <= 4">
-                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                            <span><i class="far fa-star"></i><i class="far fa-star"></i><i
-                                    class="far fa-star"></i></span>
-                        </span>
-                        <span v-if="serie.vote_average >= 4.1 && serie.vote_average <= 6">
-                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i></span>
-                            <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
-                        </span>
-                        <span v-if="serie.vote_average >= 6.1 && serie.vote_average <= 8">
-                            <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
-                            <span><i class="far fa-star"></i></span>
-                        </span>
-                        <span v-if="serie.vote_average >= 8.1 && serie.vote_average <= 10">
-                            <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i></span>
-                            <span></span>
-                        </span> -->
-                    </p>
-
-                    <img v-if="serie.poster_path" class="poster"
-                        :src="'http://image.tmdb.org/t/p/w342' + serie.poster_path" alt="">
-                    <img v-else="" class="poster_alterativ" src="img/logo.png" alt="">
+                    </p>                    
                 </div>
             </div>
         </main>
@@ -154,3 +105,30 @@
 </body>
 
 </html>
+
+<!-- <span v-if="film.vote_average >= 0 && film.vote_average <= 2">
+    <span class="yellow"><i class="fas fa-star"></i></span>
+    <span><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i
+            class="far fa-star"></i></span>
+</span>
+<span v-if="film.vote_average >= 2.1 && film.vote_average <= 4">
+    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+    <span><i class="far fa-star"></i><i class="far fa-star"></i><i
+            class="far fa-star"></i></span>
+</span>
+<span v-if="film.vote_average >= 4.1 && film.vote_average <= 6">
+    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star"></i></span>
+    <span><i class="far fa-star"></i><i class="far fa-star"></i></span>
+</span>
+<span v-if="film.vote_average >= 6.1 && film.vote_average <= 8">
+    <span class="yellow"><i class="fas fa-star"><i class="fas fa-star"></i><i
+                class="fas fa-star"></i><i class="fas fa-star"></i></i></span>
+    <span><i class="far fa-star"></i></span>
+</span>
+<span v-if="film.vote_average >= 8.1 && film.vote_average <= 10">
+    <span class="yellow"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star"></i></span>
+    <span></span>
+</span> -->
